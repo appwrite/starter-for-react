@@ -25,6 +25,15 @@ function App() {
         return () => window.removeEventListener("resize", updateHeight);
     }, [updateHeight]);
 
+    useEffect(() => {
+        if(!detailsRef.current) return;
+        detailsRef.current.addEventListener('toggle', updateHeight);
+
+        return () => {
+            if(!detailsRef.current) return;
+            detailsRef.current.removeEventListener('toggle', updateHeight);}
+    },[])
+
     async function sendPing() {
         if (status === "loading") return;
         setStatus("loading");
@@ -90,7 +99,7 @@ function App() {
 
             <section
                 className="u-flex u-flex-vertical u-main-center u-cross-center u-padding-16"
-                style={{backdropFilter: "blur(1px)"}}
+                style={{backdropFilter: "blur(1px)", height: 200}}
             >
                 {status === "loading" ? (
                     <div className="u-flex u-cross-center u-gap-16">
