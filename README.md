@@ -1,4 +1,4 @@
-# React Native starter kit with Appwrite
+# React starter kit with Appwrite
 
 Kickstart your React development with this ready-to-use starter project integrated with [Appwrite](https://www.appwrite.io)
 
