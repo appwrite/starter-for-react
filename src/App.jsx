@@ -128,11 +128,11 @@ function App() {
             <span>Waiting for connection...</span>
           </div>
         ) : status === "success" ? (
-          <h1 className="text-2xl font-light text-[#2D2D31]">
+          <h1 className="font-[Poppins] text-2xl font-light text-[#2D2D31]">
             Congratulations!
           </h1>
         ) : (
-          <h1 className="font-[Poppins, arial, sans-serf] text-2xl font-light text-[#2D2D31]">
+          <h1 className="font-[Poppins] text-2xl font-light text-[#2D2D31]">
             Check connection
           </h1>
         )}
