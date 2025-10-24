@@ -1,0 +1,296 @@
+/* Import Tailwind CSS framework */
+@import "tailwindcss";
+
+/* Import Google Fonts for the application */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+/* These variables define your app's design system. They're used throughout
+   the Tailwind configuration and can be referenced anywhere in your CSS. */
+
+@theme {
+  /* PRIMARY COLORS */
+  --color-primary: #030014; /* main background color */
+
+  /* LIGHT COLORS (for text and accents) */
+  --color-light-100: #cecefb;
+  --color-light-200: #a8b5db;
+
+  /* GRAY COLORS (for secondary text) */
+  --color-gray-100: #9ca4ab;
+
+  /* DARK COLORS (for cards and containers) */
+  --color-dark-100: #0f0d23;
+
+  /* TYPOGRAPHY */
+  --font-dm-sans: DM Sans, sans-serif;
+
+  /* RESPONSIVE BREAKPOINTS */
+  --breakpoint-xs: 480px; /* Extra small screens breakpoint */
+
+  /* BACKGROUND IMAGES */
+  --background-image-hero-pattern: url("/hero-bg.png");
+}
+
+/* ==== BASE LAYER: These styles apply to basic HTML elements and set up the foundation. */
+@layer base {
+  body {
+    font-family: "DM Sans", serif;
+    font-optical-sizing: auto;
+    background: #030014;
+  }
+
+  h1 {
+    /* Using Tailwind's @apply directive to apply utility classes */
+    @apply mx-auto max-w-4xl text-center text-5xl font-bold leading-tight tracking-[-1%] text-white sm:text-[64px] sm:leading-[76px];
+    /* Breakdown:
+       - mx-auto: Center horizontally
+       - max-w-4xl: Maximum width constraint
+       - text-center: Center text alignment
+       - text-5xl: Large text size (mobile)
+       - font-bold: Bold font weight
+       - leading-tight: Tight line height
+       - tracking-[-1%]: Slightly tighter letter spacing
+       - text-white: White text color
+       - sm:text-[64px]: Custom size on small screens and up
+       - sm:leading-[76px]: Custom line height on small screens and up
+    */
+  }
+
+  h2 {
+    @apply text-2xl font-bold text-white sm:text-3xl;
+    /* Medium-large text, bold, white color, responsive sizing */
+  }
+
+  main {
+    @apply min-h-screen relative bg-primary;
+    /* Full viewport height, positioned relative, uses primary background color */
+  }
+
+  header {
+    @apply sm:mt-10 mt-5;
+    /* Responsive top margin: 5 on mobile, 10 on small screens and up */
+  }
+
+  header img {
+    @apply w-full max-w-lg h-auto object-contain mx-auto drop-shadow-md;
+    /* Responsive image: full width, max width limit, maintain aspect ratio, centered, with shadow */
+  }
+}
+
+/* ====== COMPONENTS LAYER - These are reusable component styles that can be applied via classes.*/
+@layer components {
+  /* Background pattern overlay */
+  .pattern {
+    @apply bg-hero-pattern w-full h-screen bg-center bg-cover absolute z-0;
+    /* Full screen background image, centered, covers entire area, behind content */
+  }
+
+  .wrapper {
+    @apply px-5 py-12 xs:p-10 max-w-7xl mx-auto flex flex-col relative z-10;
+    /* Responsive padding, max width, centered, flex column layout, above background */
+  }
+
+  .trending {
+    @apply mt-20; /* Top margin */
+
+    /* Trending movies list */
+    & ul {
+      @apply flex flex-row overflow-y-auto gap-5 -mt-10 w-full hide-scrollbar;
+      /* Horizontal flex layout, scrollable, gaps between items, full width, hidden scrollbar */
+    }
+
+    /* Individual trending movie items */
+    & ul li {
+      @apply min-w-[230px] flex flex-row items-center;
+      /* Minimum width, horizontal layout, vertically centered */
+    }
+
+    /* Ranking numbers in trending section */
+    & ul li p {
+      @apply fancy-text mt-[22px] text-nowrap text-black;
+      /* Custom fancy text style, top margin, prevent text wrapping, black color */
+    }
+
+    /* Movie posters in trending section */
+    & ul li img {
+      @apply w-[127px] h-[163px] rounded-lg object-cover -ml-3.5;
+      /* Fixed dimensions, rounded corners, cover fit, negative left margin for overlap */
+    }
+  }
+
+  /* Search input styling */
+  .search {
+    @apply w-full bg-light-100/5 px-4 py-3 rounded-lg mt-10 max-w-3xl mx-auto;
+    /* Full width, semi-transparent background, padding, rounded, centered */
+
+    /* Search container */
+    & div {
+      @apply relative flex items-center;
+      /* Relative positioning for absolute children, flex layout, centered items */
+    }
+
+    /* Search icon */
+    & img {
+      @apply absolute left-2 h-5 w-5;
+      /* Absolutely positioned, left side, small icon size */
+    }
+
+    /* Search input field */
+    & input {
+      @apply w-full bg-transparent py-2 sm:pr-10 pl-10 text-base text-gray-200 placeholder-light-200 outline-hidden;
+      /* Full width, transparent, padding, text styling, no outline */
+    }
+  }
+
+  /* Main movies grid */
+  .all-movies {
+    @apply space-y-9; /* Vertical spacing between elements */
+
+    /* Movies grid container */
+    & ul {
+      @apply grid grid-cols-1 gap-5 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+      /* Responsive grid: 1 column mobile, 2 xs, 3 md, 4 lg+ */
+    }
+  }
+
+  /* Individual movie card styling */
+  .movie-card {
+    @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10;
+    /* Dark background, padding, rounded corners, inner shadow */
+
+    /* Movie poster images */
+    & img {
+      @apply rounded-lg h-auto w-full;
+      /* Rounded corners, responsive sizing */
+    }
+
+    /* Movie titles */
+    & h3 {
+      @apply text-white font-bold text-base line-clamp-1;
+      /* White text, bold, base size, truncate to one line */
+    }
+
+    /* Card content container */
+    & .content {
+      @apply mt-2 flex flex-row items-center flex-wrap gap-2;
+      /* Top margin, horizontal flex, centered, wrappable, gaps */
+    }
+
+    /* Rating section */
+    & .rating {
+      @apply flex flex-row items-center gap-1;
+      /* Horizontal flex, centered, small gap */
+    }
+
+    /* Rating star icons */
+    & .rating img {
+      @apply size-4 object-contain;
+      /* Small square size, maintain aspect ratio */
+    }
+
+    /* Rating text */
+    & .rating p {
+      @apply font-bold text-base text-white;
+      /* Bold white text, base size */
+    }
+
+    /* General content spans */
+    & .content span {
+      @apply text-sm text-gray-100;
+      /* Small gray text */
+    }
+
+    /* Language indicator */
+    & .content .lang {
+      @apply capitalize text-gray-100 font-medium text-base;
+      /* Capitalized, gray, medium weight, base size */
+    }
+
+    /* Release year */
+    & .content .year {
+      @apply text-gray-100 font-medium text-base;
+      /* Gray, medium weight, base size */
+    }
+  }
+  /* Main footer container */
+  .footer {
+    @apply mt-20 py-8 border-t border-light-100/10 bg-dark-100/20;
+    /* 
+     - mt-20: Large top margin to separate from content
+     - py-8: Vertical padding top and bottom
+     - border-t: Top border line
+     - border-light-100/10: Very subtle light border (10% opacity)
+     - bg-dark-100/20: Subtle dark background (20% opacity)
+  */
+  }
+
+  /* Footer content wrapper */
+  .footer-content {
+    @apply max-w-7xl mx-auto px-5;
+    /* 
+     - max-w-7xl: Main wrapper max width
+     - mx-auto: Center horizontally
+     - px-5: Horizontal padding 
+  */
+  }
+
+  /* Footer text styling */
+  .footer-text {
+    @apply text-center text-sm text-light-200 leading-relaxed;
+    /* 
+     - text-center: Center align the text
+     - text-sm: Small text size
+     - text-light-200: Light purple color
+     - leading-relaxed: Comfortable line height
+  */
+  }
+
+  /* Footer links styling */
+  .footer-link {
+    @apply text-light-100 hover:text-white transition-colors duration-200 underline decoration-light-100/30 hover:decoration-white underline-offset-2;
+    /* 
+     - text-light-100: Light color for links
+     - hover:text-white: White on hover
+     - transition-colors duration-200: Smooth color transition
+     - underline: Always underlined
+     - decoration-light-100/30: Subtle underline color
+     - hover:decoration-white: White underline on hover
+     - underline-offset-2: Small gap between text and underline
+  */
+  }
+
+  /* Primary link special styling */
+  .footer-link-primary {
+    @apply text-gradient hover:from-white hover:to-white;
+    /* 
+     - text-gradient: Use your existing gradient utility
+     - hover:from-white hover:to-white: White gradient on hover
+  */
+  }
+}
+
+/* ====== UTILITY LAYER - Custom utilities that extend Tailwind's built-in utilities. */
+
+/* TEXT-GRADIENT - Gradient text effect */
+@utility text-gradient {
+  @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
+}
+
+
+@utility fancy-text {
+  -webkit-text-stroke: 5px rgba(206, 206, 251, 0.5); /* Text outline */
+  font-size: 190px; /* Very large text */
+  font-family: "Bebas Neue", sans-serif; /* Display font */
+}
+
+
+@utility hide-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; /
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,14 +1,20 @@
-# React starter kit with Appwrite
+# Movie Search App with Trending Movies
 
-Kickstart your React development with this ready-to-use starter project integrated with [Appwrite](https://www.appwrite.io)
+A React-based movie search application with trending movies section, integrated with TMDB API and Appwrite.
 
-## 🚀Getting started
+## 🚀 Features
 
-###
-Clone the Project
+- **Movie Search**: Search for movies using TMDB API
+- **Trending Movies**: Display top 5 trending movies in horizontal layout
+- **Responsive Design**: Works perfectly on all devices
+- **Modern UI**: Beautiful and clean interface
+
+## 🚀 Getting started
+
+### Clone the Project
 Clone this repository to your local machine using Git:
 
-`git clone https://github.com/appwrite/starter-for-react`
+`git clone https://github.com/zaynab-abdallah/starter-for-react`
 
 ## 🛠️ Development guid
 1. **Configure Appwrite**<br/>
