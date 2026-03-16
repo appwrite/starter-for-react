@@ -1,0 +1,37 @@
+
+@import "tailwindcss";
+
+:root {
+  /* --text: #6b6375; */
+  --text-h: #08060d;
+  --bg: #16171d;
+  --border: #09080b;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+
+  background: var(--bg);
+
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+
+
+body {
+background: var(--bg);
+  display: flex;
+  place-items: center;
+  min-height: 100vh;
+  min-width: 320px;
+}
+
+#root {
+  
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
